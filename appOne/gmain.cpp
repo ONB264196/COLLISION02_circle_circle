@@ -1,4 +1,4 @@
-#define _マウス操作_
+#define _キー操作_
 
 #ifdef _マウス操作_
 #include"libOne.h"
@@ -51,14 +51,13 @@ void gmain() {
 #endif
 
 
-//以下未完成
-/*
+
 #ifdef _キー操作_
 #include"libOne.h"
 void gmain() {
     window(1000, 1000);
     struct CIRCLE {
-        float x, y, r;
+        float x, y, r, vx, vy;
     };
     struct CIRCLE c1, c2;
     c1.x = width / 2;
@@ -67,13 +66,32 @@ void gmain() {
     c2.x = 0;
     c2.y = 0;
     c2.r = 100;
-
+    c2.vx = 10;
+    c2.vy = 10;
 
     while (notQuit) {
         clear(31, 30, 51);
 
-        c2.x = mouseX;
-        c2.y = mouseY;
+        if (c2.x < 1000) {
+            if (isPress(KEY_D)) {
+                c2.x += c2.vx;
+            }
+        }
+        if (c2.x > 0) {
+            if (isPress(KEY_A)) {
+                c2.x += -c2.vx;
+            }
+        }
+        if (c2.y < 1000) {
+            if (isPress(KEY_S)) {
+                c2.y += c2.vy;
+            }
+        }
+        if (c2.y > 0) {
+            if (isPress(KEY_W)) {
+                c2.y += -c2.vy;
+            }
+        }
 
         float a = c2.x - c1.x;
         float b = c2.y - c1.y;
@@ -102,4 +120,3 @@ void gmain() {
     }
 }
 #endif
-*/
